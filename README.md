@@ -1,6 +1,6 @@
 # System.Collections.Navigation
 
-This project provides a tool called `Position<T>` for navigating structures like `T[]`, `Span<T>`, `IList<T>` and `string`. It is a similar concept to `Span<T>`, but it holds only a scalar position that points into a sequence of items and provides various operations around it.
+This project provides a tool called `Position<T>` for navigating structures like `T[]`, `Span<T>`, `IList<T>`, `string` and `StringSegment`. It is a similar concept to `Span<T>`, but it holds only a scalar position that points into a sequence of items and provides various operations around it.
 
 The capabilities of a `Position<T>` are:
  - navigate a sequence of items, move forward/backward, seek to a specific item, and other various operations
