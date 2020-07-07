@@ -64,6 +64,8 @@ namespace System.Collections.Navigation
 
         public ReadOnlySpan<T> AllAfter() => Buffer[(Index + 1)..];
 
+        public ReadOnlySpan<T> Slice(int length) => Buffer[Index..(Index + length)];
+
         public int MoveForwardWhile(Predicate<T> predicate)
         {
             var start = Index;
