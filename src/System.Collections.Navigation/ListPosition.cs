@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace System.Collections.Navigation
 {
@@ -92,6 +93,48 @@ namespace System.Collections.Navigation
             value = Buffer[newIndex];
             return true;
         }
+
+        public int MoveForwardWhile(Predicate<T> predicate)
+        {
+            var start = Index;
+            while (predicate(Value) && !IsEnd)
+                MoveNext();
+
+            return Index - start;
+        }
+
+        public int MoveForwardTo(T value, IEqualityComparer<T> comparer) =>
+            MoveForwardWhile(v => !comparer.Equals(v, value));
+
+        public int MoveForwardTo(T value) =>
+            MoveForwardTo(value, EqualityComparer<T>.Default);
+
+        public int MoveForwardToAny(IEnumerable<T> values, IEqualityComparer<T> comparer) =>
+            MoveForwardWhile(v => values.All(r => !comparer.Equals(v, r)));
+
+        public int MoveForwardToAny(IEnumerable<T> values) =>
+            MoveForwardToAny(values, EqualityComparer<T>.Default);
+
+        public int MoveBackwardsWhile(Predicate<T> predicate)
+        {
+            var start = Index;
+            while (predicate(Value) && !IsStart)
+                MovePrevious();
+
+            return start - Index;
+        }
+
+        public int MoveBackwardsTo(T value, IEqualityComparer<T> comparer) =>
+            MoveBackwardsWhile(v => !comparer.Equals(v, value));
+
+        public int MoveBackwardsTo(T value) =>
+            MoveBackwardsTo(value, EqualityComparer<T>.Default);
+
+        public int MoveBackwardsToAny(IEnumerable<T> values, IEqualityComparer<T> comparer) =>
+            MoveBackwardsWhile(v => values.All(r => !comparer.Equals(v, r)));
+
+        public int MoveBackwardsToAny(IEnumerable<T> values) =>
+            MoveBackwardsToAny(values, EqualityComparer<T>.Default);
 
         private void ValidateIndex(int index)
         {
