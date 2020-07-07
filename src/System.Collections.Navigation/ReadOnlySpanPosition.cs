@@ -57,6 +57,10 @@
             return true;
         }
 
+        public ReadOnlySpan<T> AllBefore() => Buffer[..Index];
+
+        public ReadOnlySpan<T> AllAfter() => Buffer[(Index + 1)..];
+
         private void ValidateIndex(int index)
         {
             if (index < 0 || index >= Buffer.Length)

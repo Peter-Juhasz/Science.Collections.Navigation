@@ -67,6 +67,10 @@
             return true;
         }
 
+        public Span<T> AllBefore() => Buffer[..Index];
+
+        public Span<T> AllAfter() => Buffer[(Index + 1)..];
+
         private void ValidateIndex(int index)
         {
             if (index < 0 || index >= Buffer.Length)
