@@ -44,15 +44,19 @@ namespace System.Collections.Navigation
 
         public void Offset(int delta) => Index += delta;
 
-        public T Peek(int delta)
+        public T Peek(int delta) => Buffer[Index + delta];
+
+        public bool TryPeek(int delta, out T value)
         {
             var newIndex = Index + delta;
             if (newIndex < 0 || newIndex >= Buffer.Count)
             {
-                return default!;
+                value = default!;
+                return false;
             }
 
-            return Buffer[newIndex];
+            value = Buffer[newIndex];
+            return true;
         }
 
         private void ValidateIndex(int index)
