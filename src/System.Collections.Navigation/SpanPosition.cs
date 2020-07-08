@@ -125,6 +125,8 @@ namespace System.Collections.Navigation
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
         }
+
+        public SpanPosition<T> Clone() => new(Buffer, Index);
     }
 
     public static partial class Extensions

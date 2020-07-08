@@ -115,6 +115,8 @@ namespace System.Collections.Navigation
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
         }
+
+        public ReadOnlyArrayPosition<T> Clone() => new(Buffer, Index);
     }
 
     public static partial class Extensions

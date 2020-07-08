@@ -116,6 +116,8 @@ namespace System.Collections.Navigation
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
         }
+
+        public StringSegmentPosition Clone() => new(Buffer, Index);
     }
 
     public static partial class Extensions
