@@ -117,6 +117,11 @@ namespace System.Collections.Navigation
         }
 
         public ReadOnlySpanPosition<T> Clone() => new(Buffer, Index);
+
+
+        public static bool operator ==(ReadOnlySpanPosition<T> left, ReadOnlySpanPosition<T> right) => left.Buffer == right.Buffer && left.Index == right.Index;
+
+        public static bool operator !=(ReadOnlySpanPosition<T> left, ReadOnlySpanPosition<T> right) => !(left == right);
     }
 
     public static partial class Extensions

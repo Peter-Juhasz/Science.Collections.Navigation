@@ -127,6 +127,10 @@ namespace System.Collections.Navigation
         }
 
         public SpanPosition<T> Clone() => new(Buffer, Index);
+
+        public static bool operator ==(SpanPosition<T> left, SpanPosition<T> right) => left.Buffer == right.Buffer && left.Index == right.Index;
+
+        public static bool operator !=(SpanPosition<T> left, SpanPosition<T> right) => !(left == right);
     }
 
     public static partial class Extensions
