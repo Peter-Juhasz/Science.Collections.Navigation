@@ -116,6 +116,8 @@ namespace System.Collections.Navigation
         public static bool operator ==(ReadOnlyListPosition<T> left, ReadOnlyListPosition<T> right) => left.Buffer == right.Buffer && left.Index == right.Index;
 
         public static bool operator !=(ReadOnlyListPosition<T> left, ReadOnlyListPosition<T> right) => !(left == right);
+
+        public override int GetHashCode() => HashCode.Combine(Buffer, Index);
     }
 
     public static partial class Extensions
