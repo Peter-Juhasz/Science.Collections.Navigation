@@ -70,7 +70,7 @@ namespace System.Collections.Navigation
         public int MoveForwardWhile(Predicate<char> predicate)
         {
             var start = Index;
-            while (predicate(Value) && !IsEnd)
+            while (predicate(Value))
                 MoveNext();
 
             return Index - start;
@@ -91,7 +91,7 @@ namespace System.Collections.Navigation
         public int MoveBackwardsWhile(Predicate<char> predicate)
         {
             var start = Index;
-            while (predicate(Value) && !IsStart)
+            while (predicate(Value))
                 MovePrevious();
 
             return start - Index;
