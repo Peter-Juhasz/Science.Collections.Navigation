@@ -118,6 +118,28 @@ namespace System.Collections.Navigation
         public int MoveBackwardsToAny(IEnumerable<T> values) =>
             MoveBackwardsToAny(values, EqualityComparer<T>.Default);
 
+        public bool TryMoveNext()
+        {
+            if (!IsEnd)
+            {
+                MoveNext();
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool TryMovePrevious()
+        {
+            if (!IsStart)
+            {
+                MovePrevious();
+                return true;
+            }
+
+            return false;
+        }
+
         private void ValidateIndex(int index)
         {
             if (index < 0 || index >= Buffer.Length)
