@@ -155,6 +155,41 @@ namespace System.Collections.Navigation
 
         public static bool operator !=(ArrayPosition<T> left, ArrayPosition<T> right) => !(left == right);
 
+        public static bool operator <(ArrayPosition<T> left, ArrayPosition<T> right) => left.Buffer == right.Buffer && left.Index < right.Index;
+
+        public static bool operator >(ArrayPosition<T> left, ArrayPosition<T> right) => left.Buffer == right.Buffer && left.Index > right.Index;
+
+        public static bool operator <=(ArrayPosition<T> left, ArrayPosition<T> right) => left.Buffer == right.Buffer && left.Index <= right.Index;
+
+        public static bool operator >=(ArrayPosition<T> left, ArrayPosition<T> right) => left.Buffer == right.Buffer && left.Index >= right.Index;
+
+        public static ArrayPosition<T> operator +(ArrayPosition<T> left, ArrayPosition<T> right)
+        {
+            if (left.Buffer != right.Buffer) throw new InvalidOperationException("Buffers must be the same.");
+            left.Offset(right.Index);
+            return left;
+        }
+
+        public static ArrayPosition<T> operator -(ArrayPosition<T> left, ArrayPosition<T> right)
+        {
+            if (left.Buffer != right.Buffer) throw new InvalidOperationException("Buffers must be the same.");
+            left.Offset(-right.Index);
+            return left;
+        }
+
+        public static ArrayPosition<T> operator +(ArrayPosition<T> left, int right)
+        {
+            left.Offset(right);
+            return left;
+        }
+
+        public static ArrayPosition<T> operator -(ArrayPosition<T> left, int right)
+        {
+            left.Offset(-right);
+            return left;
+        }
+
+
         public override int GetHashCode() => HashCode.Combine(Buffer, Index);
     }
 
